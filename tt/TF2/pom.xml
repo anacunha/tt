@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.pucrs.devsys</groupId>
+  <artifactId>TF</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>TF</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <repositories>
+	<repository>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
+            <id>eclipselink</id>
+            <layout>default</layout>
+            <name>Repository for library Library[eclipselink]</name>
+	</repository>
+        <repository>
+            <id>visural-common</id>
+            <name>visural-common</name>
+            <url>http://visural-common.googlecode.com/svn/trunk/visural-common/maven/</url>
+        </repository>
+  </repositories>
+  
+  <dependencies>
+  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+	<dependency>
+		<groupId>org.apache.derby</groupId>
+		<artifactId>derbyclient</artifactId>
+		<version>10.10.1.1</version>
+	</dependency>
+	
+    <dependency>
+		<groupId>org.eclipse.persistence</groupId>
+		<artifactId>eclipselink</artifactId>
+		<version>2.5.0</version>
+	</dependency>
+	
+    <dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-core-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-jaxrs</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-xc</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-server</artifactId>
+		<version>1.17.1</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-json</artifactId>
+		<version>1.17.1</version>
+	</dependency>
+           
+    <dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-core</artifactId>
+		<version>1.17.1</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-servlet</artifactId>
+		<version>1.17.1</version>
+	</dependency>
+            
+     <dependency>
+            <groupId>com.visural</groupId>
+            <artifactId>visural-common</artifactId>
+            <version>0.5.0</version>
+     </dependency>
+  </dependencies>
+</project>
