@@ -32,37 +32,10 @@ public class AuthenticationFilter implements Filter
 		
 		 HttpServletRequest req = (HttpServletRequest)sr;
 	     HttpServletResponse res = (HttpServletResponse)sr1;
+
+	     User u = AuthUtil.getLoggedUser( req );
 	     
-	     Cookie[] cookies = req.getCookies();
-	     
-	     boolean logado = false;
-	     
-	     if( cookies != null )
-	     {
-	    	 for (Cookie cookie : cookies) 
-	    	 {
-	    		 if( cookie.getName().equals("TTalkToken") )
-	    		 {
-	    			 String faceId = cookie.getValue();
-	    			 
-	    			 User u = UserDAO.getInstance().getUserByFacebook(faceId);
-	    			 
-	    			 if( u == null )
-	    				 System.out.println( "Ususario com cookie invalido: " + faceId );
-	    			 else
-	    			 {
-	    				 System.out.println( u.getName() + " acessando REST " );
-	    				 logado = true;
-	    			 }
-	    				
-	    		 }
-				System.out.println( cookie.getName() + " : " + cookie.getValue() );
-			}
-	     }
-	     else
-	    	 System.out.println( "no cookies" );
-	     
-	     if( ! logado ) 
+	     if( u == null ) 
 	     {
 	    	  res.setStatus( 403 ); // forbidden
 	    	//  res.sendRedirect("https://www.facebook.com/dialog/oauth?client_id=1410298582533255&redirect_uri=http://localhost:8080/TF2/rest/loginfb&scope=email");
