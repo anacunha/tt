@@ -15,10 +15,6 @@ import javax.sql.DataSource;
 
 import org.eclipse.persistence.config.PersistenceUnitProperties;
 
-
-
-import com.pucrs.devsys.tf.util.BaseBean;
-
 public class DbConnector {
 
 	private DataSource ds;

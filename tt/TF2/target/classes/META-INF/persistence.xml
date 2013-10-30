@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="TF">
+	<class>com.pucrs.devsys.tf.persistence.Event</class>
+	<class>com.pucrs.devsys.tf.persistence.Resource</class>
+	<class>com.pucrs.devsys.tf.persistence.Sponsor</class>
+	<class>com.pucrs.devsys.tf.persistence.Talk</class>
+	<class>com.pucrs.devsys.tf.persistence.TalkType</class>
+	<class>com.pucrs.devsys.tf.persistence.User</class>
+	<properties>
+	    <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+		<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/DemoDB;create=true"/>
+		<property name="javax.persistence.jdbc.user" value="demo"/>
+		<property name="javax.persistence.jdbc.password" value="demo"/>
+		<property name="eclipselink.ddl-generation" value="create-tables"/>
+	</properties>
+	</persistence-unit>
+</persistence>
