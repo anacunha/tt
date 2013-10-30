@@ -22,8 +22,46 @@ public class Resource extends AbstractModel
 	@Column
 	@XmlElement
 	private String link;
+	@Column
+	@XmlElement
+	private String name;
 	
 	@ManyToOne
 	private Talk talk;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public Talk getTalk() {
+		return talk;
+	}
+
+	public void setTalk(Talk talk) {
+		this.talk = talk;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+
+	
 }

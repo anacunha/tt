@@ -3,6 +3,8 @@ package com.pucrs.devsys.tf.rest.data;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.pucrs.devsys.tf.persistence.Event;
+import com.pucrs.devsys.tf.persistence.Talk;
 import com.pucrs.devsys.tf.persistence.User;
 
 
@@ -40,6 +42,8 @@ public class DataGatewayRegister
     private void registerGateways()
     {
     	_gatewayMap.put(User.class.getSimpleName(), UserGateway.getInstance() );
+    	_gatewayMap.put(Event.class.getSimpleName(), EventGateway.getInstance() );
+    	_gatewayMap.put(Talk.class.getSimpleName(), TalkGateway.getInstance() );
     }
 	
 }

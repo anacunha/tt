@@ -1,5 +1,6 @@
 package com.pucrs.devsys.tf.persistence;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -34,10 +35,10 @@ public class User extends AbstractModel
 	private String facebookId;
 
 	@ManyToMany(mappedBy="participants")
-	private List<Talk> talks; // talks em que o usuario participa
+	private List<Talk> talks = new LinkedList<Talk>();; // talks em que o usuario participa
 	
 	@ManyToMany(mappedBy="organizers")
-	private List<Event> events; // eventos que o usuario organiza
+	private List<Event> events = new LinkedList<Event>();; // eventos que o usuario organiza
 
 	public long getId() {
 		return id;

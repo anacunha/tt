@@ -28,5 +28,25 @@ public class Sponsor extends AbstractModel
 	private String name;
 	@ManyToMany
 	private List<Event> events;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 
+	
 }

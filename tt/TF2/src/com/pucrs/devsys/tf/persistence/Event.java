@@ -2,6 +2,7 @@ package com.pucrs.devsys.tf.persistence;
 
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -48,14 +49,14 @@ public class Event extends AbstractModel
 	
 	@OneToMany(mappedBy="event")
 	@JoinColumn
-	private List<Talk> talks; 
+	private List<Talk> talks = new LinkedList<Talk>(); 
 
 	@ManyToMany
 	@JoinColumn
-	private List<User> organizers; 
+	private List<User> organizers = new LinkedList<User>();; 
 	
 	@ManyToMany
-	private List<Sponsor> sponsors;
+	private List<Sponsor> sponsors = new LinkedList<Sponsor>();;
 
 	public long getId() {
 		return id;

@@ -94,6 +94,11 @@ public class DbConnector {
 		em.refresh(bean);
 	}
 	
+	public void detach(AbstractModel bean)
+	{
+		em.detach( bean );
+	}
+	
 	public <B extends AbstractModel> B find(Class<B> bean, Long id) {
 		return em.find(bean, id);
 	}

@@ -1,6 +1,7 @@
 package com.pucrs.devsys.tf.persistence;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -47,11 +48,85 @@ public class Talk extends AbstractModel
 	private Event event;
 	
 	@ManyToMany
-	private List<User> participants;
+	private List<User> participants = new LinkedList<User>();;
 	
 	@JoinColumn
 	private User responsible;	
 	
 	@OneToMany(mappedBy="talk")
-	private List<Resource> resources;
+	private List<Resource> resources = new LinkedList<Resource>();;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public TalkType getType() {
+		return type;
+	}
+
+	public void setType(TalkType type) {
+		this.type = type;
+	}
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	public List<User> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(List<User> participants) {
+		this.participants = participants;
+	}
+
+	public User getResponsible() {
+		return responsible;
+	}
+
+	public void setResponsible(User responsible) {
+		this.responsible = responsible;
+	}
+
+	public List<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<Resource> resources) {
+		this.resources = resources;
+	}
+	
+	
 }
