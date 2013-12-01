@@ -1,0 +1,23 @@
+
+
+<html>
+<h1> Portal TTalks </h1>
+<h2> Usuário Logado </h2>
+<a href="/TF2/events.html" >Eventos</a>
+
+<form action="/TF2/UploadFile" method="post" enctype="multipart/form-data">
+<br>
+<label for="file">Upload File:</label>
+<input type="file" name="file" id="file"><br>
+<input type="submit" name="submit" value="Submit">
+</form>
+<br>
+<br>
+<br>
+<form action="/TF2/DownloadFile" method="get">
+<label for="file">Download File:</label>
+<input type="text" name="resourceID" id="resourceID"><br>
+<input type="submit" name="submit" value="Submit">
+</form>
+
+</html>
