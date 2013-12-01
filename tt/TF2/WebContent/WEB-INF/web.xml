@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ <display-name>TF</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <servlet-name>Jersey</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>com.pucrs.devsys.tf.rest</param-value>
+    </init-param>
+    <init-param>
+      <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>FBLoginFilter</display-name>
+    <filter-name>FBLoginFilter</filter-name>
+    <filter-class>com.pucrs.devsys.tf.auth.FBOAuth</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>FBLoginFilter</filter-name>
+    <url-pattern>/rest/loginfb</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>AuthenticationFilter</display-name>
+    <filter-name>AuthenticationFilter</filter-name>
+    <filter-class>com.pucrs.devsys.tf.auth.AuthenticationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthenticationFilter</filter-name>
+    <url-pattern>/rest/*</url-pattern>
+  </filter-mapping>
+  
+    <servlet>
+    <servlet-name>RegisterUser</servlet-name>
+    <servlet-class>com.pucrs.devsys.tf.auth.RegisterUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterUser</servlet-name>
+    <url-pattern>/RegisterUser</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
