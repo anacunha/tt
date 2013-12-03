@@ -15,7 +15,6 @@ import com.pucrs.devsys.tf.persistence.Resource;
 /**
  * Servlet implementation class DownloadFile
  */
-@WebServlet("/DownloadFile")
 public class DownloadFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

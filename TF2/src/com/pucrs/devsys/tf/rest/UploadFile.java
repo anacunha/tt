@@ -23,7 +23,7 @@ import com.pucrs.devsys.tf.persistence.Resource;
 /**
  * Servlet implementation class UploadFile
  */
-@WebServlet("/UploadFile")
+
 public class UploadFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
