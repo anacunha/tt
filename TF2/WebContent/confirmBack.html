@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Portal TTALK</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+
+
+
+
+  <div class="container">
+    <h4>Você está realizando o Back-up da sua base de dados</h4>
+    <h4>tem certeza que deseja Restaurar?</h4>
+    <hr />
+    <div class="page"></div>
+  </div>
+<form action="/TF2/Backup" method="get">
+
+<input type="submit"  name="submit" value="SIM">
+
+<input type="submit" onclick="window.close()" name="nao"  value="NÃO">
+
+</form>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/backbone-min.js"></script>
+
+  
+   <script type="text/template" id="event-list-template">
+    <a href=" " type="submit"  class="btn btn-primary">SIM</a>
+	<a href="#" onclick="window.close()" class="btn btn-primary">NÃO</a>
+
+  </script>
+  
+  <script>
+    function htmlEncode(value){
+      return $('<div/>').text(value).html();
+    }
+    $.fn.serializeObject = function() {
+      var o = {};
+      var a = this.serializeArray();
+      $.each(a, function() {
+          if (o[this.name] !== undefined) {
+              if (!o[this.name].push) {
+                  o[this.name] = [o[this.name]];
+              }
+              o[this.name].push(this.value || '');
+          } else {
+              o[this.name] = this.value || '';
+          }
+      });
+      return o;
+    };
+
+    var Events = Backbone.Collection.extend({
+      url: 'rest/events'
+    });
+
+    var mySqlDumpUtils = Backbone.Model.exend({
+      urlRoot: 'rest/mySqlDumpUtils'
+    });
+
+
+
+    var MySqlDumpUtilsView = Backbone.View.extend({
+      el: '.page',
+      events: {
+        'submit .edit-event-form': 'backup',
+        'click .delete': 'restore'
+      },
+      backup: function () {
+        
+        var mySqlDumpUtils = new MySqlDumpUtils();
+        console.log( "Backup feito" );
+        mySqlDumpUtils.backup( {
+          success: function (mySqlDumpUtils) {
+            router.navigate('', {trigger:true});
+          }
+        });
+        return false;
+      },
+      restore: function () {
+        this.mySqlDumpUtils.restore({
+          success: function () {
+            console.log('restaurado');
+            router.navigate('', {trigger:true});
+          }
+        })
+      },
+      render: function (options) {
+        var that = this;
+        if(options.id) {
+          that.event = new Event({id: options.id});
+          that.event.fetch({
+            success: function (event) {    
+              var template = _.template($('#edit-event-template').html(), {event: event});
+              that.$el.html(template);
+            }
+          })
+        } else {
+          var template = _.template($('#edit-event-template').html(), {event: null});
+          that.$el.html(template);
+        }
+      }
+    });
+
+    var eventEditView = new EventEditView();
+
+    var Router = Backbone.Router.extend({
+        routes: {
+          "": "home", 
+          "edit/:id": "edit",
+          "new": "edit",
+        }
+    });
+
+    var router = new Router;
+    router.on('route:home', function() {
+      // render event list
+      eventListView.render();
+    })
+    router.on('route:edit', function(id) {
+       eventEditView.render({id: id});
+    })
+    Backbone.history.start();
+  </script>
+
+</body>
+</html> 
+
