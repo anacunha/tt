@@ -56,5 +56,21 @@
     <servlet-name>DownloadFile</servlet-name>
     <url-pattern>/DownloadFile</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Backup</servlet-name>
+    <servlet-class>com.pucrs.devsys.tf.rest.Backup</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Backup</servlet-name>
+    <url-pattern>/Backup</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>Restore</servlet-name>
+    <servlet-class>com.pucrs.devsys.tf.rest.Restore</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Restore</servlet-name>
+    <url-pattern>/Restore</url-pattern>
+  </servlet-mapping>
   
 </web-app>
