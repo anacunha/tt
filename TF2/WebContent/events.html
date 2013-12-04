@@ -1,27 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>BackboneTutorials.com Beginner Video</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portal TTalks</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/jumbotron-narrow.css" rel="stylesheet">
+
 </head>
+
 <body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+				<li><a href="http://localhost:8080/TF2/inbox.html">Home</a></li>
+				<li class="active"><a href="http://localhost:8080/TF2/events.html">Eventos</a></li>
+				<li><a href="http://localhost:8080/TF2/config.html">Configurações</a></li>
+			</ul>
+			<h3 class="text-muted">Portal TTalks</h3>
+		</div>
+		<div class="container">
+			<h1>Eventos</h1>
+			<hr />
+			<div class="page"></div>
+		</div>
+		<div class="footer">
+			<p>&copy; Portal TTalks 2013</p>
+		</div>
+
+	</div>
 
 
-  <div class="container">
-    <h1>Eventos</h1>
-    <hr />
-    <div class="page"></div>
-  </div>
 
 
 
-  <script src="js/jquery.js"></script>
-  <script src="js/underscore.js"></script>
-  <script src="js/backbone-min.js"></script>
 
-  
-   <script type="text/template" id="event-list-template">
+
+	<script src="js/jquery.js"></script>
+	<script src="js/underscore.js"></script>
+	<script src="js/backbone-min.js"></script>
+
+
+	<script type="text/template" id="event-list-template">
     <a href="#/new" class="btn btn-primary">New</a>
     <hr />
     <table class="table striped">
@@ -43,7 +69,7 @@
     </table>
   </script>
 
-  <script type="text/template" id="edit-event-template">
+	<script type="text/template" id="edit-event-template">
     <form class="edit-event-form">
       <legend><%= event ? 'Editar' : 'Novo' %> Evento</legend>
 
@@ -62,44 +88,45 @@
     </form>
   </script>
 
-  <script>
-    function htmlEncode(value){
+	<script>
+    function htmlEncode(value) {
       return $('<div/>').text(value).html();
     }
     $.fn.serializeObject = function() {
       var o = {};
       var a = this.serializeArray();
       $.each(a, function() {
-          if (o[this.name] !== undefined) {
-              if (!o[this.name].push) {
-                  o[this.name] = [o[this.name]];
-              }
-              o[this.name].push(this.value || '');
-          } else {
-              o[this.name] = this.value || '';
+        if (o[this.name] !== undefined) {
+          if (!o[this.name].push) {
+            o[this.name] = [ o[this.name] ];
           }
+          o[this.name].push(this.value || '');
+        } else {
+          o[this.name] = this.value || '';
+        }
       });
       return o;
     };
 
     var Events = Backbone.Collection.extend({
-      url: 'rest/events'
+      url : 'rest/events'
     });
 
     var Event = Backbone.Model.extend({
-      urlRoot: 'rest/events'
+      urlRoot : 'rest/events'
     });
 
     var EventListView = Backbone.View.extend({
-      el: '.page',
-      render: function () {
+      el : '.page',
+      render : function() {
         var that = this;
         var events = new Events();
         events.fetch({
-          success: function (events) 
-          {
-        	  
-            var template = _.template($('#event-list-template').html(), {events: events.models});
+          success : function(events) {
+
+            var template = _.template($('#event-list-template').html(), {
+              events : events.models
+            });
             that.$el.html(template);
           }
         })
@@ -109,42 +136,52 @@
     var eventListView = new EventListView();
 
     var EventEditView = Backbone.View.extend({
-      el: '.page',
-      events: {
-        'submit .edit-event-form': 'saveEvent',
-        'click .delete': 'deleteEvent'
+      el : '.page',
+      events : {
+        'submit .edit-event-form' : 'saveEvent',
+        'click .delete' : 'deleteEvent'
       },
-      saveEvent: function (ev) {
+      saveEvent : function(ev) {
         var eventDetails = $(ev.currentTarget).serializeObject();
         var event = new Event();
-        console.log( eventDetails );
+        console.log(eventDetails);
         event.save(eventDetails, {
-          success: function (event) {
-            router.navigate('', {trigger:true});
+          success : function(event) {
+            router.navigate('', {
+              trigger : true
+            });
           }
         });
         return false;
       },
-      deleteEvent: function (ev) {
+      deleteEvent : function(ev) {
         this.event.destroy({
-          success: function () {
+          success : function() {
             console.log('destroyed');
-            router.navigate('', {trigger:true});
+            router.navigate('', {
+              trigger : true
+            });
           }
         })
       },
-      render: function (options) {
+      render : function(options) {
         var that = this;
-        if(options.id) {
-          that.event = new Event({id: options.id});
+        if (options.id) {
+          that.event = new Event({
+            id : options.id
+          });
           that.event.fetch({
-            success: function (event) {    
-              var template = _.template($('#edit-event-template').html(), {event: event});
+            success : function(event) {
+              var template = _.template($('#edit-event-template').html(), {
+                event : event
+              });
               that.$el.html(template);
             }
           })
         } else {
-          var template = _.template($('#edit-event-template').html(), {event: null});
+          var template = _.template($('#edit-event-template').html(), {
+            event : null
+          });
           that.$el.html(template);
         }
       }
@@ -153,11 +190,11 @@
     var eventEditView = new EventEditView();
 
     var Router = Backbone.Router.extend({
-        routes: {
-          "": "home", 
-          "edit/:id": "edit",
-          "new": "edit",
-        }
+      routes : {
+        "" : "home",
+        "edit/:id" : "edit",
+        "new" : "edit",
+      }
     });
 
     var router = new Router;
@@ -166,11 +203,13 @@
       eventListView.render();
     })
     router.on('route:edit', function(id) {
-       eventEditView.render({id: id});
+      eventEditView.render({
+        id : id
+      });
     })
     Backbone.history.start();
   </script>
 
 </body>
-</html> 
+</html>
 

@@ -1,25 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Portal TTalks</title>
 
-<html>
-<h1> Portal TTalks </h1>
-<h2> Usuário Logado </h2>
-<a href="/TF2/events.html" >Eventos</a>
-<a href="/TF2/config.html" >Configurações</a>
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
+<!-- Custom styles for this template -->
+<link href="css/jumbotron-narrow.css" rel="stylesheet">
 
-<form action="/TF2/UploadFile" method="post" enctype="multipart/form-data">
-<br>
-<label for="file">Upload File:</label>
-<input type="file" name="file" id="file"><br>
-<input type="submit" name="submit" value="Submit">
-</form>
-<br>
-<br>
-<br>
-<form action="/TF2/DownloadFile" method="get">
-<label for="file">Download File:</label>
-<input type="text" name="resourceID" id="resourceID"><br>
-<input type="submit" name="submit" value="Submit">
-</form>
+</head>
 
+<body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="http://localhost:8080/TF2/events.html">Eventos</a></li>
+				<li><a href="http://localhost:8080/TF2/config.html">ConfiguraÃ§Ãµes</a></li>
+			</ul>
+			<h3 class="text-muted">Portal TTalks</h3>
+		</div>
+
+		<h3>Bem vindo ao Portal TTalks! :)</h3>
+		<br/>
+		<form action="/TF2/UploadFile" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+				<label for="file">Upload File:</label>
+				<input type="file" name="file" id="file">
+				<br/><input class="btn btn-default" type="submit" name="submit" value="Upload">
+			</div>
+		</form>
+		<form action="/TF2/DownloadFile" method="get">
+		  <div class="form-group">
+				<label for="file">Download File:</label>
+				<input class="form-control" type="text" name="resourceID" id="resourceID">
+				<br/><input class="btn btn-default" type="submit" name="submit" value="Download">
+			</div>
+		</form>
+		<div class="footer">
+			<p>&copy; Portal TTalks 2013</p>
+		</div>
+
+	</div>
+</body>
 </html>
+
